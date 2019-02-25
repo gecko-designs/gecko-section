@@ -1,3 +1,55 @@
+.gecko-section-editor {
+  --background-color:transparent;
+  --opacity: 0.7;
+  position: relative;
+  background-color: var(--background-color);
+  background-size: cover;
+  background-position: center;
+  padding: 1rem;
+  border: dashed 1px pink;
+}
+.gecko-section-editor--image:before {
+  content: "";
+  background-color: inherit;
+  opacity: var(--opacity);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.gecko-section-editor.is-style-lg .gecko-section-editor__content {
+  max-width: 71.5rem;
+}
+.gecko-section-editor.is-style-md .gecko-section-editor__content {
+  max-width: 61.5rem;
+}
+.gecko-section-editor.is-style-sm .gecko-section-editor__content {
+  max-width: 51.5rem;
+}
+.gecko-section-editor__content {
+  padding: 1rem;
+  border: dashed 1px pink;
+  max-width: 100%;
+  margin: 0px auto;
+}
 
-
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJlZGl0b3Itc3R5bGVzLmNzcyIsInNvdXJjZVJvb3QiOiIifQ==*/
+.editor-block-preview__content .gecko-section-editor {
+  border: none;
+  background-color: #F0F0F0;
+  padding: 1rem 5px;
+}
+.editor-block-preview__content .gecko-section-editor__content {
+  border: none;
+  background-color: #FFFFFF;
+  max-width: 100%;
+}
+.editor-block-preview__content .gecko-section-editor.is-style-lg .gecko-section-editor__content {
+  max-width: 90%;
+}
+.editor-block-preview__content .gecko-section-editor.is-style-md .gecko-section-editor__content {
+  max-width: 80%;
+}
+.editor-block-preview__content .gecko-section-editor.is-style-sm .gecko-section-editor__content {
+  max-width: 70%;
+}

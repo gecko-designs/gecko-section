@@ -177,11 +177,11 @@ if(production){
 		}),
 		new BundleAnalyzerPlugin(),
 		new CopyPlugin([
-			{ from: 'dist/editor-styles.css', to: path.resolve(__dirname, 'build/gecko-grid-layout/dist/editor-styles.css') },
-			{ from: 'dist/style.css', to: path.resolve(__dirname, 'build/gecko-grid-layout/dist/style.css') },
-			{ from: 'dist/editor.bundle.js', to: path.resolve(__dirname, 'build/gecko-grid-layout/dist/editor.bundle.js') },
-			{ from: 'gecko-grid-layout.php', to: path.resolve(__dirname, 'build/gecko-grid-layout/gecko-grid-layout.php') },
-			{ from: 'readme.txt', to: path.resolve(__dirname, 'build/gecko-grid-layout/readme.txt') },
+			{ from: 'dist/editor-styles.css', to: path.resolve(__dirname, 'build/gecko-section/dist/editor-styles.css') },
+			{ from: 'dist/style.css', to: path.resolve(__dirname, 'build/gecko-section/dist/style.css') },
+			{ from: 'dist/editor.bundle.js', to: path.resolve(__dirname, 'build/gecko-section/dist/editor.bundle.js') },
+			{ from: 'gecko-section.php', to: path.resolve(__dirname, 'build/gecko-section/gecko-section.php') },
+			{ from: 'readme.txt', to: path.resolve(__dirname, 'build/gecko-section/readme.txt') },
     	]),
 	];
 }
