@@ -1,7 +1,8 @@
 <?php
 /**
  * Plugin Name: Gecko Section
- * Description: Grid Section block for creating layouts in gutenberg.
+ * Plugin URI:  https://github.com/gecko-designs/gecko-section
+ * Description: Section block for full row layouts in themes that support gutenberg full-width blocks.
  * Version: 1.0.0
  * Author: Gecko Designs
  * Author URI: https://geckodesigns.com

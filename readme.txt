@@ -12,7 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 A full width wrapper block.
 
 == Description ==
-A full width section block. It allows you to wrap content, and have different backgrounds within your theme while keeping a fixed container width inside.
+A full width section block. It allows you to wrap content, and have different backgrounds within your theme while keeping a fixed container width inside. This block is designed for as a theme developer tool, and works best in themes that support full-width gutenberg blocks.
 
 == Installation ==
 1. Upload `gecko-section` to the `/wp-content/plugins/` directory
