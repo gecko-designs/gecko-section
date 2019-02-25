@@ -1,4 +1,4 @@
-=== Gecko Grid Layout ===
+=== Gecko Section ===
 Contributors: dwayneparton, musicalbigfoot, geckodesigns
 Donate link: https://dwayneparton.com
 Tags: gutenberg, block, section
