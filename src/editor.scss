@@ -1,68 +1,21 @@
 @import "variables.scss";
-.gecko-section-editor {
-	--background-color:transparent;
-	--opacity: 0.7;
+.gecko-section {
 	position: relative;
-	background-color:var(--background-color);
-	background-size: cover;
-	background-position: center;
 	padding: 1rem;
 	border: dashed 1px pink;
-	&--image{
-		&:before{
-			content: '';
-			background-color: inherit;
-			opacity: var(--opacity);
-			position: absolute;
-			height: 100%;
-			width: 100%;
-			top: 0;
-			left: 0;
-		}
+	&.is-size-lg & {
+		&__inner { max-width: 71.5rem;}
 	}
-	&.is-style-lg & {
-		&__content { max-width: 71.5rem;}
+	&.is-size-md & {
+		&__inner { max-width: 61.5rem;}
 	}
-	&.is-style-md & {
-			&__content { max-width: 61.5rem;}
+	&.is-size-sm & {
+		&__inner { max-width: 51.5rem;}
 	}
-	&.is-style-sm & {
-			&__content { max-width: 51.5rem;}
-	}
-	&__content {
+	&__inner {
 		padding: 1rem;
 		border: dashed 1px pink;
 		max-width: 100%;
 		margin: 0px auto;
-	}
-}
-// Styles for the previews
-.editor-block-preview__content {
-	.gecko-section-editor{
-		border: none;
-		background-color: #F0F0F0;
-		padding: 1rem 5px;
-		&__content {
-			border: none;
-			background-color: #FFFFFF;
-			max-width: 100%;
-		}
-		&.is-style-lg {
-			.gecko-section-editor__content {
-				max-width: 90%;
-			}
-		}
-
-		&.is-style-md {
-			.gecko-section-editor__content {
-				max-width: 80%;
-			}
-		}
-
-		&.is-style-sm {
-			.gecko-section-editor__content {
-				max-width: 70%;
-			}
-		}
 	}
 }

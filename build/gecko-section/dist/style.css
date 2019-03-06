@@ -1,33 +1,19 @@
 .gecko-section {
-  --background-color: transparent;
-  --opacity: 0.7;
   position: relative;
-  background-color: var(--background-color);
-  background-size: cover;
-  background-position: center;
-  padding: 1rem;
 }
-.gecko-section .wp-block-gecko-section {
+.gecko-section__inner {
   padding: 1rem;
   max-width: 100%;
   margin: 0px auto;
 }
-.gecko-section--image:before {
-  content: "";
-  background-color: inherit;
-  opacity: var(--opacity);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-.gecko-section--is-style-lg .wp-block-gecko-section {
+.gecko-section.is-size-lg .gecko-section__inner {
   max-width: 71.5rem;
 }
-.gecko-section--is-style-md .wp-block-gecko-section {
+.gecko-section.is-size-md .gecko-section__inner {
   max-width: 61.5rem;
 }
-.gecko-section--is-style-sm .wp-block-gecko-section {
+.gecko-section.is-size-sm .gecko-section__inner {
   max-width: 51.5rem;
 }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vc3R5bGUuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsYUFBYTtFQUNiLGVBQWU7RUFDZixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0Usa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxrQkFBa0I7QUFDcEIsQyIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZ2Vja28tc2VjdGlvbiB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cbi5nZWNrby1zZWN0aW9uX19pbm5lciB7XG4gIHBhZGRpbmc6IDFyZW07XG4gIG1heC13aWR0aDogMTAwJTtcbiAgbWFyZ2luOiAwcHggYXV0bztcbn1cbi5nZWNrby1zZWN0aW9uLmlzLXNpemUtbGcgLmdlY2tvLXNlY3Rpb25fX2lubmVyIHtcbiAgbWF4LXdpZHRoOiA3MS41cmVtO1xufVxuLmdlY2tvLXNlY3Rpb24uaXMtc2l6ZS1tZCAuZ2Vja28tc2VjdGlvbl9faW5uZXIge1xuICBtYXgtd2lkdGg6IDYxLjVyZW07XG59XG4uZ2Vja28tc2VjdGlvbi5pcy1zaXplLXNtIC5nZWNrby1zZWN0aW9uX19pbm5lciB7XG4gIG1heC13aWR0aDogNTEuNXJlbTtcbn0iXSwic291cmNlUm9vdCI6IiJ9*/

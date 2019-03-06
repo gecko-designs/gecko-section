@@ -1,25 +1,19 @@
-import TypeSelect from './type-select';
 /**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
 import {
 	PanelBody,
-	RangeControl,
-	Button,
 	G,
 	SVG,
-	Path
+	Path,
+	SelectControl
 } from '@wordpress/components';
 import {
 	InnerBlocks,
-	MediaUpload,
 	InspectorControls,
-	ColorPalette,
-	getColorClassName,
-	getColorObjectByColorValue,
-	withColors,
 } from '@wordpress/editor';
+
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -49,109 +43,50 @@ export const settings = {
 	deprecated: [],
 
 	attributes: {
-		type: {
+		size: {
 			type: 'string', //solid, image, ?video?
-			default: 'solid',
-		},
-		bgMedia: {
-			type: 'object',
-		},
-		opacity: {
-			type: 'number',
-			default: 0.7,
-		},
-		bgColor: {
-			type: 'string',
 		},
 	},
 
 	styles: [
-		{ name: 'full', label: __( 'Full'), isDefault: true },
-		{ name: 'lg', label: __( 'Large') },
-		{ name: 'md', label: __( 'Medium') },
-		{ name: 'sm', label: __( 'Small') },
+		{ name: 'default', label: __( 'Default'), isDefault: true },
 	],
-	edit: ({attributes,setAttributes, insertBlocksAfter}) => {
-		const {
-			bgMedia,
-			opacity,
-			bgColor,
-			type,
-			className,
-		} = attributes;
-		let bgImage;
-		if (bgMedia && bgMedia.type === 'image') {
-			bgImage = `url("${bgMedia.url}")`;
-		}
-		const styles = {
-			'--background-color': bgColor,
-			'--opacity': opacity,
-		};
-		if(type === 'image' || type === 'video'){
-			styles.backgroundImage = bgImage;
-		}
 
+	deprecated: [
+		{
+			migrate(){},
+			save() {
+				return <InnerBlocks.Content />;
+			},
+		}
+	],
+
+	edit: ({attributes, setAttributes, insertBlocksAfter, className}) => {
+		const {size} = attributes;
 		return ([
 			<InspectorControls>
-				<PanelBody title="Background Settings">
-					<TypeSelect 
-						onSelect = {(next) => {
+				<PanelBody title="Settings">
+					<SelectControl
+						label="Row Width"
+						value={ size }
+						options={ [
+							{ value: 'full', label: 'Full' },
+							{ value: 'lg', label: 'Large' },
+							{ value: 'md', label: 'Medium' },
+							{ value: 'sm', label: 'Small' },
+						] }
+						onChange = {
+							(size) => {
 								setAttributes({
-									type: next,
-								});
-							}}
-						value={type}
+									size: size,
+								})
+							}
+						}
 					/>
-					<hr />
-					{type === 'image' && <MediaUpload
-						onSelect={(value) => {
-							setAttributes({
-								bgMedia: value,
-							});
-						}}
-						type={['image']}
-						value={(bgMedia)? bgMedia.id: null }
-						render={({ open }) => ([
-							<div>
-								<Button className={bgMedia ? 'image-button' : 'button button-large'} onClick={open}>
-									{'Choose Background'}
-								</Button>
-
-								{bgMedia &&
-									<Button className='button button-small' onClick={() => {
-										setAttributes({
-											bgMedia: null,
-										});
-									}}>
-										{'Remove Background'}
-									</Button>
-								}
-							</div>
-						])}
-					/>}
-					{type === 'image' && <RangeControl
-						label="Overlay Opacity"
-						value={opacity}
-						onChange={(value) => { setAttributes({ opacity: value }); }}
-						min="0"
-						max="0.9"
-						step="0.1"
-					/>}
-					<p></p>
-					<div>
-						<ColorPalette
-							label='Background Color'
-							value={(bgColor) ? bgColor : undefined}
-							onChange={(value) => { 
-								setAttributes({ bgColor: value }); 
-							}}
-						/>
-					</div>
-					<p></p>
 				</PanelBody>
 			</InspectorControls>,
-			<div className={`gecko-section-editor ${className} gecko-section-editor--${type}`} style={styles}>
-				<div className="gecko-section-editor__content">
+			<div className={`gecko-section ${className} is-size-${size}`} >
+				<div className="gecko-section__inner">
 					{
 						('undefined' !== typeof insertBlocksAfter) &&
 						<InnerBlocks />
@@ -162,10 +97,6 @@ export const settings = {
 	},
 
 	save: () => {
-		return (
-			<div>
-				<InnerBlocks.Content />
-			</div>
-		);
+		return(<div><InnerBlocks.Content /></div>);
 	}
 };

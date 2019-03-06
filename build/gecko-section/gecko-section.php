@@ -3,7 +3,7 @@
  * Plugin Name: Gecko Section
  * Plugin URI:  https://github.com/gecko-designs/gecko-section
  * Description: Section block for full row layouts in themes that support gutenberg full-width blocks.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Gecko Designs
  * Author URI: https://geckodesigns.com
  * Text Domain: gecko-section
@@ -47,13 +47,19 @@ class GeckoSection {
 			[],
 			filemtime( plugin_dir_path(__FILE__) . "dist/style.css" )
 		);
+		// If Post has block then enqueue script
+		add_action( 'the_post', function($post){
+			if(has_block( 'gecko/section', $post )){
+				wp_enqueue_style('gecko-section');
+			}
+		} );
 		// Initialize custom blocks
 		// Dynamically import blocks in blocks folder
 		register_block_type(
 			"gecko/section",
 			[
 				"render_callback" => [$this, "render_callback"],
-				"style" => "gecko-section",
+				// "style" => "gecko-section",
 				"script" => "",
 				"editor_style" => "gecko-section-editor",
 				"editor_script" => "gecko-section-editor",
@@ -64,21 +70,32 @@ class GeckoSection {
 	 * If the block is dynamic you would render the template here.
 	 */
 	public function render_callback( $attributes, $content ) {
-		// Sort of a hack at the moment.
-		// $image = wp_get_attachment_image_url($attributes[bgMedia],'full');
-		$bgMedia = (isset($attributes['bgMedia']['url'])) ? "background-image: url(".$attributes['bgMedia']['url'].");": "";
-		$bgColor = (isset($attributes['bgColor'])) ? "--background-color: ".$attributes['bgColor'].";" : "";
-		$opacity = (isset($attributes['opacity'])) ? "--opacity: ".$attributes['opacity'].";" : "";
-		$type = isset($attributes['type'])? $attributes['type']: false;
-		$styles = $bgColor;
-		$styles .= ($type === 'image') ? $bgMedia : '';
-		$styles .= ($type === 'image') ? $opacity : '';
-		$class = 'gecko-section';
-		$class .= (isset($attributes['className']))? ' gecko-section--'.$attributes['className'] : '';
-		$class .= ($type)? ' gecko-section--'.$attributes['type'] : '';
-		// $encoded = json_encode($attributes, JSON_HEX_APOS|JSON_HEX_QUOT);
-		return sprintf('<div class="%s" style="%s">%s</div>',
-		$class, $styles, $content);
+		// Defaults and attributes
+		// Setting to false unless needed because all styles do not need to be inlined
+		$defaults = array(
+			'size' => false,
+			'className' => false,
+		);
+		// Add a filter to hook into the default args
+		$defaults = apply_filters( 'gecko/section/defaults', $defaults, $attributes );
+		$atts = wp_parse_args( $attributes, $defaults );
+
+		$classNames = array('gecko-section');
+		if($atts['className']) $classNames[] = $atts['className'];
+		if($atts['size']) $classNames[] = 'is-size-'.$atts['size'];
+		// Add a filter to hook into classNames
+		$classNames = apply_filters( 'gecko/section/class', $classNames, $attributes );
+
+		// $styles = array();
+		// // Add a filter to hook into the inine styles $args = ($styles, $atts)
+		// $styles = apply_filters( 'gecko/section/style', $styles, $attributes );
+
+		// $styleString = '';
+		// foreach ($styles as $key => $value) {
+		// 	if($value) $styleString .= $key.':'.$value.';';
+		// }
+		
+		return sprintf('<div class="%s"><div class="gecko-section__inner">%s</div></div>', implode(' ', $classNames), $content);
 	}
 
 }

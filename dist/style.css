@@ -1,33 +1,17 @@
 .gecko-section {
-  --background-color: transparent;
-  --opacity: 0.7;
   position: relative;
-  background-color: var(--background-color);
-  background-size: cover;
-  background-position: center;
-  padding: 1rem;
 }
-.gecko-section .wp-block-gecko-section {
+.gecko-section__inner {
   padding: 1rem;
   max-width: 100%;
   margin: 0px auto;
 }
-.gecko-section--image:before {
-  content: "";
-  background-color: inherit;
-  opacity: var(--opacity);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-.gecko-section--is-style-lg .wp-block-gecko-section {
+.gecko-section.is-size-lg .gecko-section__inner {
   max-width: 71.5rem;
 }
-.gecko-section--is-style-md .wp-block-gecko-section {
+.gecko-section.is-size-md .gecko-section__inner {
   max-width: 61.5rem;
 }
-.gecko-section--is-style-sm .wp-block-gecko-section {
+.gecko-section.is-size-sm .gecko-section__inner {
   max-width: 51.5rem;
 }

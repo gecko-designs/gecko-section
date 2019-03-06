@@ -4,7 +4,7 @@ Donate link: https://dwayneparton.com
 Tags: gutenberg, block, section
 Requires at least: 5.0
 Tested up to: 5.0.3
-Stable tag: 1.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,9 @@ A full width section block. It allows you to wrap content, and have different ba
 1. No questions have been asked...let\'s change that.
 
 == Changelog ==
-= 1.0 =
+= 1.0.1 =
+* Simplified overall block as it's designed for themes
+= 1.0.0 =
 * Initial release
 
 == Upgrade Notice ==
