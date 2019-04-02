@@ -94,7 +94,8 @@ class GeckoSection {
 		// foreach ($styles as $key => $value) {
 		// 	if($value) $styleString .= $key.':'.$value.';';
 		// }
-		
+
+
 		return sprintf('<div class="%s"><div class="gecko-section__inner">%s</div></div>', implode(' ', $classNames), $content);
 	}
 

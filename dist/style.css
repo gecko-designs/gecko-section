@@ -1,17 +1,29 @@
 .gecko-section {
   position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gecko-section__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 .gecko-section__inner {
+  position: relative;
+  z-index: 3;
   padding: 1rem;
   max-width: 100%;
   margin: 0px auto;
 }
 .gecko-section.is-size-lg .gecko-section__inner {
-  max-width: 71.5rem;
+  max-width: 76.05rem;
 }
 .gecko-section.is-size-md .gecko-section__inner {
-  max-width: 61.5rem;
+  max-width: 63.6rem;
 }
 .gecko-section.is-size-sm .gecko-section__inner {
-  max-width: 51.5rem;
+  max-width: 53.33rem;
 }

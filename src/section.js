@@ -7,7 +7,7 @@ import {
 	G,
 	SVG,
 	Path,
-	SelectControl
+	SelectControl,
 } from '@wordpress/components';
 import {
 	InnerBlocks,
@@ -47,7 +47,6 @@ export const settings = {
 			type: 'string', //solid, image, ?video?
 		},
 	},
-
 	styles: [
 		{ name: 'default', label: __( 'Default'), isDefault: true },
 	],
@@ -63,6 +62,7 @@ export const settings = {
 
 	edit: ({attributes, setAttributes, insertBlocksAfter, className}) => {
 		const {size} = attributes;
+
 		return ([
 			<InspectorControls>
 				<PanelBody title="Settings">
@@ -85,7 +85,7 @@ export const settings = {
 					/>
 				</PanelBody>
 			</InspectorControls>,
-			<div className={`gecko-section ${className} is-size-${size}`} >
+			<div className={`gecko-section ${className} is-size-${size}`}>
 				<div className="gecko-section__inner">
 					{
 						('undefined' !== typeof insertBlocksAfter) &&
