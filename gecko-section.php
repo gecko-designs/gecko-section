@@ -74,6 +74,7 @@ class GeckoSection {
 		// Setting to false unless needed because all styles do not need to be inlined
 		$defaults = array(
 			'size' => false,
+			'background' => false,
 			'className' => false,
 		);
 		// Add a filter to hook into the default args
@@ -86,17 +87,18 @@ class GeckoSection {
 		// Add a filter to hook into classNames
 		$classNames = apply_filters( 'gecko/section/class', $classNames, $attributes );
 
-		// $styles = array();
-		// // Add a filter to hook into the inine styles $args = ($styles, $atts)
-		// $styles = apply_filters( 'gecko/section/style', $styles, $attributes );
+		$styles = array();
+		if($atts['background']) $styles['background'] = $atts['background'];
+		// Add a filter to hook into the inine styles $args = ($styles, $atts)
+		$styles = apply_filters( 'gecko/section/style', $styles, $attributes );
 
-		// $styleString = '';
-		// foreach ($styles as $key => $value) {
-		// 	if($value) $styleString .= $key.':'.$value.';';
-		// }
+		$styleString = '';
+		foreach ($styles as $key => $value) {
+			if($value) $styleString .= $key.':'.$value.';';
+		}
 
 
-		return sprintf('<div class="%s"><div class="gecko-section__inner">%s</div></div>', implode(' ', $classNames), $content);
+		return sprintf('<div class="%s" style="%s"><div class="gecko-section__inner">%s</div></div>', implode(' ', $classNames), $styleString, $content);
 	}
 
 }

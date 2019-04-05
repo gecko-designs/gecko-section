@@ -13,7 +13,7 @@ import {
 	InnerBlocks,
 	InspectorControls,
 } from '@wordpress/editor';
-
+import BackgroundImage from './BackgroundImage';
 
 /**
  * Allowed blocks constant is passed to InnerBlocks precisely as specified here.
@@ -46,6 +46,9 @@ export const settings = {
 		size: {
 			type: 'string', //solid, image, ?video?
 		},
+		background: {
+			type: 'string', //solid, image, ?video?
+		},
 	},
 	styles: [
 		{ name: 'default', label: __( 'Default'), isDefault: true },
@@ -61,8 +64,11 @@ export const settings = {
 	],
 
 	edit: ({attributes, setAttributes, insertBlocksAfter, className}) => {
-		const {size} = attributes;
-
+		const {size, background} = attributes;
+		// const background = 'linear-gradient(90deg, rgba(2,0,36,0.5) 0%, rgba(0,212,255,0.3) 100%), linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.2) 35%, rgba(255,0,0,1) 100%), center/contain no-repeat url(https://via.placeholder.com/500x500)';
+		const style = {
+			background: background,
+		}
 		return ([
 			<InspectorControls>
 				<PanelBody title="Settings">
@@ -84,8 +90,15 @@ export const settings = {
 						}
 					/>
 				</PanelBody>
+				<PanelBody title="Fills">
+					<BackgroundImage 
+						label="Background"
+						value={ background }
+						onChange={(v) => {setAttributes({background: v})}}
+					/>
+				</PanelBody>
 			</InspectorControls>,
-			<div className={`gecko-section ${className} is-size-${size}`}>
+			<div className={`gecko-section ${className} is-size-${size}`} style={style}>
 				<div className="gecko-section__inner">
 					{
 						('undefined' !== typeof insertBlocksAfter) &&
