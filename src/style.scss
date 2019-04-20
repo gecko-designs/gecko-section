@@ -1,44 +1,44 @@
 @import "variables.scss";
 .gecko-section {
 	position: relative;
-
+	display: flex;
+	justify-content: center;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 
-
-	&__overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-
-		// z-index: 2;
-
-		height: 100%;
-		width: 100%;
-	}
-
 	&__inner {
 		position: relative;
 		z-index: 3;
-
 		padding: 1rem;
-		max-width: 100%;
-		margin: 0px auto;
+		flex-basis: 100%;
 	}
+
+	&.is-align-center & {
+		&__inner {
+			align-self: center;
+		}
+	}
+
+	&.is-align-bottom & {
+		&__inner {
+			align-self: flex-end;
+		}
+	}
+
 	&.is-size-lg &{
 		&__inner {
-			max-width: 76.05rem;
+			flex-basis: 76.05rem;
 		}
 	}
 	&.is-size-md &{
 		&__inner {
-			max-width: 63.6rem;
+			flex-basis: 63.6rem;
 		}
 	}
 	&.is-size-sm &{
 		&__inner {
-			max-width: 53.33rem;
+			flex-basis: 53.33rem;
 		}
 	}
 

@@ -75,7 +75,9 @@ class GeckoSection {
 		$defaults = array(
 			'size' => false,
 			'background' => false,
+			'minHeight' => false,
 			'className' => false,
+			'align' => false,
 		);
 		// Add a filter to hook into the default args
 		$defaults = apply_filters( 'gecko/section/defaults', $defaults, $attributes );
@@ -84,11 +86,13 @@ class GeckoSection {
 		$classNames = array('gecko-section');
 		if($atts['className']) $classNames[] = $atts['className'];
 		if($atts['size']) $classNames[] = 'is-size-'.$atts['size'];
+		if($atts['align']) $classNames[] = 'is-align-'.$atts['align'];
 		// Add a filter to hook into classNames
 		$classNames = apply_filters( 'gecko/section/class', $classNames, $attributes );
 
 		$styles = array();
 		if($atts['background']) $styles['background'] = $atts['background'];
+		if($atts['minHeight']) $styles['min-height'] = $atts['minHeight'];
 		// Add a filter to hook into the inine styles $args = ($styles, $atts)
 		$styles = apply_filters( 'gecko/section/style', $styles, $attributes );
 

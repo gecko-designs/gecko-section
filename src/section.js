@@ -8,10 +8,12 @@ import {
 	SVG,
 	Path,
 	SelectControl,
+	Toolbar
 } from '@wordpress/components';
 import {
 	InnerBlocks,
 	InspectorControls,
+	BlockControls
 } from '@wordpress/editor';
 import BackgroundImage from './BackgroundImage';
 
@@ -43,12 +45,10 @@ export const settings = {
 	deprecated: [],
 
 	attributes: {
-		size: {
-			type: 'string', //solid, image, ?video?
-		},
-		background: {
-			type: 'string', //solid, image, ?video?
-		},
+		size: { type: 'string'},
+		align: { type: 'string', default: 'top'},
+		minHeight: {type: 'string', default: ''},
+		background: {type: 'string'},
 	},
 	styles: [
 		{ name: 'default', label: __( 'Default'), isDefault: true },
@@ -64,10 +64,10 @@ export const settings = {
 	],
 
 	edit: ({attributes, setAttributes, insertBlocksAfter, className}) => {
-		const {size, background} = attributes;
-		// const background = 'linear-gradient(90deg, rgba(2,0,36,0.5) 0%, rgba(0,212,255,0.3) 100%), linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.2) 35%, rgba(255,0,0,1) 100%), center/contain no-repeat url(https://via.placeholder.com/500x500)';
+		const {size, background, minHeight, align} = attributes;
 		const style = {
 			background: background,
+			minHeight: minHeight,
 		}
 		return ([
 			<InspectorControls>
@@ -89,6 +89,35 @@ export const settings = {
 							}
 						}
 					/>
+					<SelectControl
+						label="Vertical Align"
+						value={ align }
+						options={ [
+							{ value: 'top', label: 'Top' },
+							{ value: 'center', label: 'Center' },
+							{ value: 'bottom', label: 'Bottom' },
+						] }
+						onChange = {
+							(v) => {
+								setAttributes({
+									align: v,
+								})
+							}
+						}
+					/>
+					<label for='min-height'>Minimum Height</label>
+					<input 
+						type='text'
+						name='min-height'
+						value={ minHeight }
+						onChange = {
+							(e) => {
+								setAttributes({
+									minHeight: e.target.value,
+								})
+							}
+						}
+					/>
 				</PanelBody>
 				<PanelBody title="Fills">
 					<BackgroundImage 
@@ -98,7 +127,36 @@ export const settings = {
 					/>
 				</PanelBody>
 			</InspectorControls>,
-			<div className={`gecko-section ${className} is-size-${size}`} style={style}>
+			<BlockControls>
+				<Toolbar controls={[
+					{
+						icon: 'align-full-width',
+						title: __('Full Width'),
+						isActive: size === 'full',
+						onClick: () => setAttributes({size: 'full'}),
+					},
+					{
+						icon: 'align-wide',
+						title: __('Wide'),
+						isActive: size === 'lg',
+						onClick: () => setAttributes({size: 'lg'}),
+					},
+					{
+						icon: 'align-center',
+						title: __('Medium'),
+						isActive: size === 'md',
+						onClick: () => setAttributes({size: 'md'}),
+					},
+					{
+						icon: 'align-center',
+						title: __('Narrow'),
+						isActive: size === 'sm',
+						onClick: () => setAttributes({size: 'sm'}),
+					},
+				]}>
+				</Toolbar>
+			</BlockControls>,
+			<div className={`gecko-section ${className} is-size-${size} is-align-${align}`} style={style}>
 				<div className="gecko-section__inner">
 					{
 						('undefined' !== typeof insertBlocksAfter) &&
