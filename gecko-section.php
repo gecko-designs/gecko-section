@@ -3,7 +3,7 @@
  * Plugin Name: Gecko Section
  * Plugin URI:  https://github.com/gecko-designs/gecko-section
  * Description: Section block for full row layouts in themes that support gutenberg full-width blocks.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Gecko Designs
  * Author URI: https://geckodesigns.com
  * Text Domain: gecko-section
