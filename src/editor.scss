@@ -9,6 +9,12 @@
 	padding: 1rem;
 	border: dashed 1px pink;
 
+	&.add-contrast {
+		p,h1,h2,h3,h4,h5,h6,a {
+			color: #FFF;
+		}
+	}
+
 	&.is-align-center & {
 		&__inner {
 			align-self: center;

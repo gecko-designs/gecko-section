@@ -8,6 +8,7 @@ import {
 	SVG,
 	Path,
 	SelectControl,
+	ToggleControl,
 	Toolbar
 } from '@wordpress/components';
 import {
@@ -49,6 +50,7 @@ export const settings = {
 		align: { type: 'string', default: 'top'},
 		minHeight: {type: 'string', default: ''},
 		background: {type: 'string'},
+		contrast: {type: 'boolean', default: false},
 	},
 	styles: [
 		{ name: 'default', label: __( 'Default'), isDefault: true },
@@ -64,16 +66,16 @@ export const settings = {
 	],
 
 	edit: ({attributes, setAttributes, insertBlocksAfter, className}) => {
-		const {size, background, minHeight, align} = attributes;
+		const {size, background, minHeight, align, contrast} = attributes;
 		const style = {
 			background: background,
 			minHeight: minHeight,
 		}
 		return ([
 			<InspectorControls>
-				<PanelBody title="Settings">
+				<PanelBody title={__("Settings")}>
 					<SelectControl
-						label="Row Width"
+						label={__("Row Width")}
 						value={ size }
 						options={ [
 							{ value: 'full', label: 'Full' },
@@ -120,10 +122,16 @@ export const settings = {
 					/>
 				</PanelBody>
 				<PanelBody title="Fills">
+					<ToggleControl
+						label={__("Add Contrast?")}
+						help={__("Some themes may support contrasting backgrounds.")}
+						checked={contrast}
+						onChange={(v) => setAttributes({ contrast: v })}
+					/>
 					<BackgroundImage 
-						label="Background"
+						label={__("Background")}
 						value={ background }
-						onChange={(v) => {setAttributes({background: v})}}
+						onChange={(v) => setAttributes({background: v})}
 					/>
 				</PanelBody>
 			</InspectorControls>,
@@ -156,7 +164,7 @@ export const settings = {
 				]}>
 				</Toolbar>
 			</BlockControls>,
-			<div className={`gecko-section ${className} is-size-${size} is-align-${align}`} style={style}>
+			<div className={`gecko-section ${className} is-size-${size} is-align-${align} ${(contrast)? 'add-contrast': ''}`} style={style}>
 				<div className="gecko-section__inner">
 					{
 						('undefined' !== typeof insertBlocksAfter) &&

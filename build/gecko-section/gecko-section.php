@@ -3,7 +3,7 @@
  * Plugin Name: Gecko Section
  * Plugin URI:  https://github.com/gecko-designs/gecko-section
  * Description: Section block for full row layouts in themes that support gutenberg full-width blocks.
- * Version: 1.0.1
+ * Version: 1.0.4
  * Author: Gecko Designs
  * Author URI: https://geckodesigns.com
  * Text Domain: gecko-section
@@ -78,6 +78,7 @@ class GeckoSection {
 			'minHeight' => false,
 			'className' => false,
 			'align' => false,
+			'contrast' => false,
 		);
 		// Add a filter to hook into the default args
 		$defaults = apply_filters( 'gecko/section/defaults', $defaults, $attributes );
@@ -87,6 +88,7 @@ class GeckoSection {
 		if($atts['className']) $classNames[] = $atts['className'];
 		if($atts['size']) $classNames[] = 'is-size-'.$atts['size'];
 		if($atts['align']) $classNames[] = 'is-align-'.$atts['align'];
+		if($atts['contrast']) $classNames[] = 'add-contrast';
 		// Add a filter to hook into classNames
 		$classNames = apply_filters( 'gecko/section/class', $classNames, $attributes );
 

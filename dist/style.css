@@ -17,6 +17,9 @@
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
 }
+.gecko-section.add-contrast p, .gecko-section.add-contrast h1, .gecko-section.add-contrast h2, .gecko-section.add-contrast h3, .gecko-section.add-contrast h4, .gecko-section.add-contrast h5, .gecko-section.add-contrast h6, .gecko-section.add-contrast a {
+  color: #FFF;
+}
 .gecko-section.is-align-center .gecko-section__inner {
   -ms-flex-item-align: center;
       align-self: center;

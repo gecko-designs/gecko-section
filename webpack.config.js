@@ -1,6 +1,5 @@
 const debug = process.env.NODE_ENV !== 'production';
 const production = (process.env.NODE_ENV === 'production')? true : false;
-const webpack = require('webpack');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -81,8 +80,8 @@ console.log(externals);
 
 const settings = {
 	context: __dirname,
-	devtool: debug ? 'inline-sourcemap' : false,
-	mode: debug ? 'development' : 'production',
+	devtool: !production ? 'inline-sourcemap' : false,
+	mode: !production ? 'development' : 'production',
 	target: 'web',
 	entry: {
 		editor : path.resolve(__dirname, 'src/index.js'),
