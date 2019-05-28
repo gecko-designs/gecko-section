@@ -3,7 +3,7 @@
  * Plugin Name: Gecko Section
  * Plugin URI:  https://github.com/gecko-designs/gecko-section
  * Description: Section block for full row layouts in themes that support gutenberg full-width blocks.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Gecko Designs
  * Author URI: https://geckodesigns.com
  * Text Domain: gecko-section
@@ -48,11 +48,12 @@ class GeckoSection {
 			filemtime( plugin_dir_path(__FILE__) . "dist/style.css" )
 		);
 		// If Post has block then enqueue script
-		add_action( 'the_post', function($post){
-			if(has_block( 'gecko/section', $post )){
+		add_filter( 'the_content', function($content){
+			if(has_block( 'gecko/section', $content )){
 				wp_enqueue_style('gecko-section');
 			}
-		} );
+			return $content;
+		}, 1 );
 		// Initialize custom blocks
 		// Dynamically import blocks in blocks folder
 		register_block_type(
